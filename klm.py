@@ -108,22 +108,21 @@ def main():
                                                  " the calculated task completion time for these operators.")
     parser.add_argument("klm_file", help="A file containing the klm operators (can contain python comments (#) too)",
                         type=str)
-    parser.add_argument("-c", "--use-custom", help="use custom values for the klm operators instead of the default",
-                        action="store_true")  # store_true sets the value to True if specified and to False if not
+    # parser.add_argument("-c", "--use-custom", help="use custom values for the klm operators instead of the default",
+    #                     action="store_true")  # store_true sets the value to True if specified and to False if not
     args = parser.parse_args()
     input_file = args.klm_file
 
     # parse input file with the klm operators
     parsed_operators = parse_klm_file(input_file)
 
-    if args.use_custom:
-        predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
-        print(f"Predicted task completion time for the given operators using custom klm values: "
-              f"{predicted_time:0.3f} seconds.")
-    else:
-        predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
-        print(f"Predicted task completion time for the given operators using default klm values: "
-              f"{predicted_time:0.3f} seconds.")
+    # calculate task completion times for default and custom klm values
+    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
+    print(f"Predicted task completion time for the given operators using custom klm values: "
+          f"{predicted_time:0.3f} seconds.")
+    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
+    print(f"Predicted task completion time for the given operators using default klm values: "
+          f"{predicted_time:0.3f} seconds.")
 
 
 if __name__ == '__main__':
