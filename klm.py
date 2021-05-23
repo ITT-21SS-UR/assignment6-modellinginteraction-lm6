@@ -11,9 +11,9 @@ import argparse
 
 
 """
-The KLM default values are taken from Card, S. K., Moran, T. P., & Newell, A. (1980). The keystroke-level model for 
-user performance time with interactive systems. Communications of the ACM, 23(7), 396-410. The value for the 
-M-operator was taken from Kieras, D. (2001). Using the keystroke-level model to estimate execution times. 
+The KLM default values are taken from Card, S. K., Moran, T. P., & Newell, A. (1980). The keystroke-level model for
+user performance time with interactive systems. Communications of the ACM, 23(7), 396-410. The value for the
+M-operator was taken from Kieras, D. (2001). Using the keystroke-level model to estimate execution times.
 University of Michigan, 555.
 """
 KLM_DEFAULT_VALUES = {
