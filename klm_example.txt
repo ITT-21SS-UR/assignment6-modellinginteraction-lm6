@@ -1,0 +1,7 @@
+# KLM operators for logging in to a system (the example below should give 25.34 seconds as a result)
+m8k # remember username, enter eight keystrokes for username
+k # tab, switches to password field
+m13k # remember and enter password (13 characters),
+hpBb # switch to mouse, move over "sign in" button, click.
+HpB KM
+120B
