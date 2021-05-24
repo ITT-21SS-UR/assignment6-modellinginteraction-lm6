@@ -17,7 +17,7 @@ M-operator was taken from Kieras, D. (2001). Using the keystroke-level model to 
 University of Michigan, 555.
 """
 KLM_DEFAULT_VALUES = {
-    "K": 0.28,  # Average nonsecretarial typist (40 wpm), 0.20 for average skilled typist (55 wpm)
+    "K": 0.20,  # average skilled/experienced typist (55 wpm); 0.28 for an average nonsecretarial typist (40 wpm)
     "P": 1.1,
     "H": 0.4,
     "B": 0.1,
@@ -102,6 +102,19 @@ def calculate_completion_time(operators: str, klm_value_dict: dict[str, float]) 
     return task_completion_time
 
 
+def calculate_klm(klm_file: str) -> None:
+    # parse input file with the klm operators
+    parsed_operators = parse_klm_file(klm_file)
+
+    # calculate task completion times for default and custom klm values
+    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
+    print(f"Predicted task completion time for the given operators using custom klm values: "
+          f"{predicted_time:0.3f} seconds.")
+    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
+    print(f"Predicted task completion time for the given operators using default klm values: "
+          f"{predicted_time:0.3f} seconds.")
+
+
 def main():
     # parse command line input and print out some helpful information
     parser = argparse.ArgumentParser(description="A small program to parse klm operators given as a file and output"
@@ -113,16 +126,7 @@ def main():
     args = parser.parse_args()
     input_file = args.klm_file
 
-    # parse input file with the klm operators
-    parsed_operators = parse_klm_file(input_file)
-
-    # calculate task completion times for default and custom klm values
-    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
-    print(f"Predicted task completion time for the given operators using custom klm values: "
-          f"{predicted_time:0.3f} seconds.")
-    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
-    print(f"Predicted task completion time for the given operators using default klm values: "
-          f"{predicted_time:0.3f} seconds.")
+    calculate_klm(input_file)
 
 
 if __name__ == '__main__':
