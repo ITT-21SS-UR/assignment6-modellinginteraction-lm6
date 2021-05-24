@@ -1,0 +1,7 @@
+# task 1: adding the numbers from 1 to 20 using only the mouse
+
+pbb  # move mouse cursor to the first number (1) and press the left mouse button
+pbb  # move cursor to the "+" key and press it
+16p32b  # same procedure for 2 to 9 (1P and 2B for each digit (8) and "+" operator (8))
+pbb pbb pbb  # starting from 10 the user has to press two digits before the "+"
+30p60b  # same for 11 to 20 (3P and 6B for each number & operator pair (10 overall)); last press is of course the "=" key instead of "+"
