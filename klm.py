@@ -102,17 +102,18 @@ def calculate_completion_time(operators: str, klm_value_dict: dict[str, float]) 
     return task_completion_time
 
 
-def calculate_klm(klm_file: str) -> None:
+def calculate_klm(klm_file: str) -> tuple[int, int]:
     # parse input file with the klm operators
     parsed_operators = parse_klm_file(klm_file)
 
     # calculate task completion times for default and custom klm values
-    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
+    predicted_time_custom = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_CUSTOM_VALUES)
     print(f"Predicted task completion time for the given operators using custom klm values: "
-          f"{predicted_time:0.3f} seconds.")
-    predicted_time = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
+          f"{predicted_time_custom:0.3f} seconds.")
+    predicted_time_default = calculate_completion_time(operators=parsed_operators, klm_value_dict=KLM_DEFAULT_VALUES)
     print(f"Predicted task completion time for the given operators using default klm values: "
-          f"{predicted_time:0.3f} seconds.")
+          f"{predicted_time_default:0.3f} seconds.")
+    return predicted_time_default, predicted_time_custom
 
 
 def main():
