@@ -65,10 +65,10 @@ class IttCalculator(QtWidgets.QWidget):
         if command == "=":
             self.__result_text = self.__calculate_result()
             self.__result_label.setText(self.__result_text)
-        elif command == "DEL":
+        elif command == "Clear":
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
-        elif command == "Clear":
+        elif command == "DEL":
             self.__equation_text = self.__equation_text[:-1]
             self.__equation_label.setText(self.__equation_text)
 
@@ -136,9 +136,9 @@ class IttCalculator(QtWidgets.QWidget):
 
         self.__ui.NumButton_Enter.clicked.connect(lambda: self.__mouse_input_command("="))
         self.__ui.NumButton_Enter.installEventFilter(self)
-        self.__ui.NumButton_Clear.clicked.connect(lambda: self.__mouse_input_command("DEL"))
+        self.__ui.NumButton_Clear.clicked.connect(lambda: self.__mouse_input_command("Clear"))
         self.__ui.NumButton_Clear.installEventFilter(self)
-        self.__ui.NumButton_Delete.clicked.connect(lambda: self.__mouse_input_command("Clear"))
+        self.__ui.NumButton_Delete.clicked.connect(lambda: self.__mouse_input_command("DEL"))
         self.__ui.NumButton_Delete.installEventFilter(self)
 
     # EventFilter to log mouse movement over buttons
@@ -158,7 +158,7 @@ class IttCalculator(QtWidgets.QWidget):
         elif event.key() == QtCore.Qt.Key_Enter or event.key() == QtCore.Qt.Key_Return:
             self.__keyboard_input_command("=")
         elif event.key() == QtCore.Qt.Key_Backspace:
-            self.__keyboard_input_command("Clear")
+            self.__keyboard_input_command("DEL")
         elif event.text() == "." or event.text() == ",":
             self.__keyboard_input_number_or_operator(".")
 
