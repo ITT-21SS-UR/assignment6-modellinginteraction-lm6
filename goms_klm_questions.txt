@@ -1,0 +1,19 @@
+This exercise was done by Michael Meckl.
+
+a) The term "critical path" was adopted from the project management domain and
+serves a similar purpose with regard to GOMS. In a series of parallel activities
+the critical path is the longest sequence of these actions necessary to perform
+the given task and therefore shows the minimum amount of time needed for this task.
+To determine the critical path all activities and their dependencies on other
+activities need to be known, so all parallel tasks can be visualized, e.g. in a
+so-called "schedule chart".
+
+
+b) Most people use their laptop's touchpad instead of a mouse to do pointing.
+The original KLM does not include touchpads which is why the H operator for switching
+between keyboard and mouse doesn't really fit as the touchpad is much closer to
+the keys than a mouse would normally be. Another part of the original model that 
+changes for laptops is the pointing operator ('P') as pointing with a touchpad is 
+not exactly the same as pointing with a mouse and might influence the needed time
+as well. One way to overcome these issues is to empirically collect new data for 
+the H and P operators specifically for laptops.
