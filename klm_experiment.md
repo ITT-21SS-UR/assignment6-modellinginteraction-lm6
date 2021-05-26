@@ -2,7 +2,6 @@
 
 The goal of this study was to compare a users actual task completions times, with task the task completion times suggested by the klm-model. Therefore, we designed 4 tasks which the user had to comeplete and log the times he needed to do so. We also calculated the task time the klm-model expected by using its default klm-values and our own klm-values(which we retrieved from another test), for the given tasks.
 
-### Our alternative hypotheses was “Participants that use our enhanced keyboard input with autocompletion can enter text faster than with unenhanced keyboard input” while our null hypothesis stated that ### there was no difference between both conditions or using autocompletion would even lead to slower text input. The application was created with Qt Designer [1] and implemented in Python with the PyQt-Framework [2].
 
 ## Experiment Design
 
@@ -29,8 +28,7 @@ We logged the values [timeStamp,eventType,isMouse,klmId,argument] of the followi
 
 
 
-Our dependent variable was the time, which the user needed to fullfill a task. We were able to calculate it with help of the timestamps of our logged events. Our independent variable was the task the participant had to do.
-
+Our dependent variable was the time, which the user needed to fullfill a task. We were able to calculate it with help of the timestamps of our logged events. Our independent variable was the task the participant had to do. As stated above the user was told to only use 1 hand, to not have "1 or both hands" as confounding variable
 We applied counterbalancing to migitate learning effects.
 
 
@@ -38,4 +36,3 @@ We applied counterbalancing to migitate learning effects.
 
 The study was conducted by 8 participants ranging in age from 22 to 27 years (m = 24,5, sd = 2,5). All participants were male and studied media informatics at the University of Regensburg. 
 
-## Limitations
