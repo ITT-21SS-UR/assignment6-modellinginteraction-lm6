@@ -1,3 +1,7 @@
+"""
+This script was written by Johannes Lorper
+"""
+
 import sys
 import os
 import time
