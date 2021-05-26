@@ -42,7 +42,7 @@ def input_logging_decorator(function):
 
 
 class IttCalculator(QtWidgets.QWidget):
-    def __init__(self, logfile=None):
+    def __init__(self, logfile="calculatorLog.csv"):
         super().__init__()
         self.__ui = uic.loadUi("calculator.ui", self)
         self.__equation_text = ""
@@ -50,9 +50,9 @@ class IttCalculator(QtWidgets.QWidget):
         self.__result_text = ""
         self.__result_label = self.__ui.ResultLabel
         self.__allowed_numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-        self.__allowed_operators = ["/", "*", "+", "-"]
+        self.__allowed_operators = ["/", "*", "+", "-", "(", ")"]
         self._setup_keys()
-        self._logfile_name = logfile if logfile is not None else "calculatorLog.csv"
+        self._logfile_name = logfile
         self._calculatorLogger = CalculatorLogger(logfile)
         self._mouse_move_path = []
         self.show()
@@ -121,9 +121,7 @@ class IttCalculator(QtWidgets.QWidget):
 
         self.__OPERATOR_KEYS = [self.__ui.NumButton_Multiply, self.__ui.NumButton_Divide,
                                 self.__ui.NumButton_Add, self.__ui.NumButton_Subtract,
-                                self.__ui.NumButton_DecPoint]
-
-        self.__KEYBOARD_KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "+", "-", "*", "/"]
+                                self.__ui.NumButton_DecPoint, self.__ui.BracketButton_Open, self.__ui.BracketButton_Close]
 
         # don't let user edit input field directly for now
         self._setup_listeners()
@@ -170,6 +168,9 @@ class IttCalculator(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    logfile_name = sys.argv[1]
-    calculator = IttCalculator(logfile_name)
+    if len(sys.argv) > 1:
+        logfile_name = sys.argv[1]
+        calculator = IttCalculator(logfile_name)
+    else:
+        calculator = IttCalculator()
     sys.exit(app.exec_())
