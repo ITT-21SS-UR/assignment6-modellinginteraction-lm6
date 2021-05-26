@@ -98,7 +98,7 @@ class IttCalculator(QtWidgets.QWidget):
 
     def _condition_started(self, id):
         self.__ui.stackedWidget.setCurrentIndex(4)
-        self._calculatorLogger.add_new_log_data(time.time(), "task_started", None, None, self._current_condition_index)
+        self._calculatorLogger.add_new_log_data(time.time(), "task_started", None, None, self._balanced_condition_list[self._current_condition_index])
 
     # add a new input to our equation and equation-label
     def __add_to_equation(self, new_input):
@@ -111,7 +111,7 @@ class IttCalculator(QtWidgets.QWidget):
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
             self._calculatorLogger.add_new_log_data(time.time(), "task_finished", None, None,
-                                                    self._current_condition_index)
+                                                    self._balanced_condition_list[self._current_condition_index])
             self.__result_text = self.__calculate_result()
             self.__result_label.setText(self.__result_text)
             self._current_condition_index += 1
@@ -122,9 +122,9 @@ class IttCalculator(QtWidgets.QWidget):
         elif command == "Clear":
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
-        elif command == "DEL":
             self._calculatorLogger.add_new_log_data(time.time(), "task_restarted", None, None,
-                                                    self._current_condition_index)
+                                                    self._balanced_condition_list[self._current_condition_index])
+        elif command == "DEL":
             self.__equation_text = self.__equation_text[:-1]
             self.__equation_label.setText(self.__equation_text)
 
