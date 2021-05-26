@@ -108,18 +108,21 @@ class IttCalculator(QtWidgets.QWidget):
     # execute an input command
     def __execute_command(self, command):
         if command == "=":
+            self.__equation_text = ""
+            self.__equation_label.setText(self.__equation_text)
             self._calculatorLogger.add_new_log_data(time.time(), "task_finished", None, None,
                                                     self._current_condition_index)
             self.__result_text = self.__calculate_result()
             self.__result_label.setText(self.__result_text)
             self._current_condition_index += 1
+
             if self._current_condition_index > 3:
                 sys.exit()
             self.__ui.stackedWidget.setCurrentIndex(self._balanced_condition_list[self._current_condition_index])
-        elif command == "DEL":
+        elif command == "Clear":
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
-        elif command == "Clear":
+        elif command == "DEL":
             self._calculatorLogger.add_new_log_data(time.time(), "task_restarted", None, None,
                                                     self._current_condition_index)
             self.__equation_text = self.__equation_text[:-1]
@@ -188,9 +191,9 @@ class IttCalculator(QtWidgets.QWidget):
 
         self.__ui.NumButton_Enter.clicked.connect(lambda: self.__mouse_input_command("="))
         self.__ui.NumButton_Enter.installEventFilter(self)
-        self.__ui.NumButton_Clear.clicked.connect(lambda: self.__mouse_input_command("DEL"))
+        self.__ui.NumButton_Clear.clicked.connect(lambda: self.__mouse_input_command("Clear"))
         self.__ui.NumButton_Clear.installEventFilter(self)
-        self.__ui.NumButton_Delete.clicked.connect(lambda: self.__mouse_input_command("Clear"))
+        self.__ui.NumButton_Delete.clicked.connect(lambda: self.__mouse_input_command("DEL"))
         self.__ui.NumButton_Delete.installEventFilter(self)
 
     # EventFilter to log mouse movement over buttons
