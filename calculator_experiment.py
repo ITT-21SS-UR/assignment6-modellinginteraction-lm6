@@ -1,10 +1,7 @@
 import sys
 import os
 import time
-import math
 from PyQt5 import QtWidgets, QtCore, uic
-from PyQt5.QtWidgets import QPushButton
-
 import pandas as pd
 
 
@@ -25,10 +22,11 @@ class CalculatorLogger:
 
     def set_logfile_name(self, new_logfile_name):
         self.__log_file_name = new_logfile_name
-        self.__calculator_data = self.self.__init_study_data()
+        self.__calculator_data = self.__init_study_data()
 
     def add_new_log_data(self, time_stamp, event_type, is_mouse, klm_id, button):
-        log_data = {'timeStamp': time_stamp, 'eventType': event_type, 'isMouse': is_mouse, 'klmId': klm_id, 'button': button}
+        log_data = {'timeStamp': time_stamp, 'eventType': event_type, 'isMouse': is_mouse, 'klmId': klm_id,
+                    'button': button}
         print(log_data)
         self.__calculator_data = self.__calculator_data.append(log_data, ignore_index=True)
         self.__calculator_data.to_csv(self.__log_file_name, index=False)
@@ -46,10 +44,10 @@ def input_logging_decorator(function):
 
 
 class IttCalculator(QtWidgets.QWidget):
-    def __init__(self, participantid):
+    def __init__(self, participantid=0):
         super().__init__()
-        self._participant_id = participantid;
-        self._condition_list = [0,1,2,3]
+        self._participant_id = participantid
+        self._condition_list = [0, 1, 2, 3]
         self._balanced_condition_list = self.__get_balanced_condition_list(self._condition_list, self._participant_id)
         self._current_condition_index = 0
 
@@ -87,22 +85,20 @@ class IttCalculator(QtWidgets.QWidget):
         return [condition_list[i] for i in order_for_participant]
 
     def setup_experiment_ui(self):
-        self.__ui.Condition1_text.insertPlainText(" adding the numbers from 1 to 20 using only the mouse")
-        self.__ui.Condition2_text.insertPlainText(" adding the numbers from 1 to 20 using only the keyboard")
-        self.__ui.Condition3_text.insertPlainText(" calculating the result of (3*3 + 4*4) ∗ 15.2 using only the mouse.")
-        self.__ui.Condition4_text.insertPlainText(" calculating the result of (3*3 + 4*4) ∗ 15.2 using only the keyboard.")
+        self.__ui.Condition1_text.insertPlainText(" Add the numbers from 1 to 20 using only the mouse")
+        self.__ui.Condition2_text.insertPlainText(" Add the numbers from 1 to 20 using only the keyboard")
+        self.__ui.Condition3_text.insertPlainText(" Calculate the result of (3*3 + 4*4) ∗ 15.2 using only the mouse.")
+        self.__ui.Condition4_text.insertPlainText(
+            " Calculate the result of (3*3 + 4*4) ∗ 15.2 using only the keyboard.")
 
         self.__ui.Condition1_start.clicked.connect(lambda: self._condition_started(1))
         self.__ui.Condition2_start.clicked.connect(lambda: self._condition_started(2))
         self.__ui.Condition3_start.clicked.connect(lambda: self._condition_started(3))
         self.__ui.Condition4_start.clicked.connect(lambda: self._condition_started(4))
 
-
     def _condition_started(self, id):
-
         self.__ui.stackedWidget.setCurrentIndex(4)
-        self._calculatorLogger.add_new_log_data(time.time(),"task_started",None,None,self._current_condition_index)
-
+        self._calculatorLogger.add_new_log_data(time.time(), "task_started", None, None, self._current_condition_index)
 
     # add a new input to our equation and equation-label
     def __add_to_equation(self, new_input):
@@ -112,15 +108,14 @@ class IttCalculator(QtWidgets.QWidget):
     # execute an input command
     def __execute_command(self, command):
         if command == "=":
-            self._calculatorLogger.add_new_log_data(time.time(),"task_finished",None,None,self._current_condition_index)
+            self._calculatorLogger.add_new_log_data(time.time(), "task_finished", None, None,
+                                                    self._current_condition_index)
             self.__result_text = self.__calculate_result()
             self.__result_label.setText(self.__result_text)
-            self._current_condition_index +=1
+            self._current_condition_index += 1
             if self._current_condition_index > 3:
                 sys.exit()
             self.__ui.stackedWidget.setCurrentIndex(self._balanced_condition_list[self._current_condition_index])
-
-
         elif command == "DEL":
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
@@ -131,11 +126,10 @@ class IttCalculator(QtWidgets.QWidget):
     # calculates and returns the result of the equation by using the eval() function,
     # returns "Err" string if the equation cant be solved
     def __calculate_result(self):
-
         try:
             result = str(eval(self.__equation_text))
             return result
-        except:
+        except Exception:
             return "Err"
 
     # sends a new keyboard "command" input (enter, clear or backspace) to the log (through the decorator)
@@ -175,7 +169,8 @@ class IttCalculator(QtWidgets.QWidget):
 
         self.__OPERATOR_KEYS = [self.__ui.NumButton_Multiply, self.__ui.NumButton_Divide,
                                 self.__ui.NumButton_Add, self.__ui.NumButton_Subtract,
-                                self.__ui.NumButton_DecPoint, self.__ui.BracketButton_Open, self.__ui.BracketButton_Close]
+                                self.__ui.NumButton_DecPoint, self.__ui.BracketButton_Open,
+                                self.__ui.BracketButton_Close]
 
         # don't let user edit input field directly for now
         self._setup_listeners()
@@ -203,8 +198,6 @@ class IttCalculator(QtWidgets.QWidget):
                 # We use "Px" here because its not the whole pointing even "P", but just a part of it
                 self._calculatorLogger.add_new_log_data(time.time(), "mouseMove", True, "Px", source.text())
         return False
-
-
 
     # registers all relevant key press events
     def keyPressEvent(self, event):

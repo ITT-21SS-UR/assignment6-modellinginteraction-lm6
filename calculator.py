@@ -1,10 +1,7 @@
 import sys
 import os
 import time
-import math
 from PyQt5 import QtWidgets, QtCore, uic
-from PyQt5.QtWidgets import QPushButton
-
 import pandas as pd
 
 
@@ -24,7 +21,8 @@ class CalculatorLogger:
         return calculator_data
 
     def add_new_log_data(self, time_stamp, event_type, is_mouse, klm_id, button):
-        log_data = {'timeStamp': time_stamp, 'eventType': event_type, 'isMouse': is_mouse, 'klmId': klm_id, 'button': button}
+        log_data = {'timeStamp': time_stamp, 'eventType': event_type, 'isMouse': is_mouse, 'klmId': klm_id,
+                    'button': button}
         print(log_data)
         self.__calculator_data = self.__calculator_data.append(log_data, ignore_index=True)
         self.__calculator_data.to_csv(self.__log_file_name, index=False)
@@ -81,7 +79,7 @@ class IttCalculator(QtWidgets.QWidget):
         try:
             result = str(eval(self.__equation_text))
             return result
-        except:
+        except Exception:
             return "Err"
 
     # sends a new keyboard "command" input (enter, clear or backspace) to the log (through the decorator)
@@ -121,7 +119,8 @@ class IttCalculator(QtWidgets.QWidget):
 
         self.__OPERATOR_KEYS = [self.__ui.NumButton_Multiply, self.__ui.NumButton_Divide,
                                 self.__ui.NumButton_Add, self.__ui.NumButton_Subtract,
-                                self.__ui.NumButton_DecPoint, self.__ui.BracketButton_Open, self.__ui.BracketButton_Close]
+                                self.__ui.NumButton_DecPoint, self.__ui.BracketButton_Open,
+                                self.__ui.BracketButton_Close]
 
         # don't let user edit input field directly for now
         self._setup_listeners()
@@ -149,8 +148,6 @@ class IttCalculator(QtWidgets.QWidget):
                 # We use "Px" here because its not the whole pointing even "P", but just a part of it
                 self._calculatorLogger.add_new_log_data(time.time(), "mouseMove", True, "Px", source.text())
         return False
-
-
 
     # registers all relevant key press events
     def keyPressEvent(self, event):
