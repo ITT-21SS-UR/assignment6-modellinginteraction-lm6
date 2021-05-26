@@ -213,7 +213,7 @@ class IttCalculator(QtWidgets.QWidget):
         elif event.key() == QtCore.Qt.Key_Enter or event.key() == QtCore.Qt.Key_Return:
             self.__keyboard_input_command("=")
         elif event.key() == QtCore.Qt.Key_Backspace:
-            self.__keyboard_input_command("Clear")
+            self.__keyboard_input_command("DEL")
         elif event.text() == "." or event.text() == ",":
             self.__keyboard_input_number_or_operator(".")
 
