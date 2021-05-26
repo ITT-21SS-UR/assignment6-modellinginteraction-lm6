@@ -3,5 +3,5 @@
 pbb  # pointing to and clicking key for opening bracket
 7P14B  # for all 7 operators in the brackets we need the pointing and two mouse clicks, so 1p2b each
 pbb  # closing bracket
-5P10B  # 5 operators in total and again 1p2b each
+5P10B  # 5 operators in total for the rest; again 1p2b each
 PBB  # moving mouser cursor to and clicking on "="
