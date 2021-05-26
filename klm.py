@@ -26,11 +26,10 @@ KLM_DEFAULT_VALUES = {
 }
 
 KLM_CUSTOM_VALUES = {
-    # TODO add own values after 6.2 is finished!
-    "K": 0.0,
-    "P": 0.0,
-    "H": 0.0,
-    "B": 0.0,
+    "K": 0.216,
+    "P": 0.468,
+    "H": 0.616,
+    "B": 0.198,
     "M": 1.20,
 }
 

@@ -1,6 +1,5 @@
 # task 2: adding the numbers from 1 to 20 using only the keyboard
 
-# H  # switch to keyboard from the previous task ??? (otherwise we'll never get a H operator)
-18K  # 2 keystrokes for digit and the following "+" operator from 1 to 9 (9 in total)
-27k  # 3 keystrokes for number and "+" operator from 11 to 19 (9 in total)
-KKKK  # 4 keystrokes for the last: 2 for entering "20" and 2 for "Shift ="
+18K  # 2 keystrokes for digit and the following "+" operator from 1 to 9 (9*2 in total)
+27k  # 3 keystrokes for number and "+" operator from 11 to 19 (9*3 in total)
+KKKK  # 2 keystrokes for entering "20" and 2 for "Shift" & "="

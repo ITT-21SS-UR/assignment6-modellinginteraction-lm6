@@ -1,7 +1,8 @@
 # task 4: calculating the result of (3^2 + 4^2) ∗ 15.2 using only the keyboard
+# as our calculator has no option for '^' we use '*' instead
 
 2K  # '(' needs two key presses: Shift + 8
-4K K 4K  # "3*3+4*4" ; "*" needs two key presses as well: "Shift +" -> therefore 3^2 needs 4 Keystrokes
+4K K 4K  # "3*3 + 4*4" ; "*" needs two key presses as well: "Shift" "+" -> therefore 3^2 needs 4 Keystrokes
 2k  # for closing bracket
-6K  # "*15.2"
-2K  # clicking "Shift ="
+6K  # "* 15.2" (again 2 keypresses for '*')
+2K  # clicking "Shift" and "="
