@@ -17,16 +17,16 @@ class CalculatorLogger:
             calculator_data = pd.read_csv(self.__log_file_name)
         else:
             calculator_data = pd.DataFrame(
-                columns=['timeStamp', 'eventType', 'isMouse', 'klmId', 'button'])
+                columns=['timeStamp', 'eventType', 'isMouse', 'klmId', 'argument'])
         return calculator_data
 
     def set_logfile_name(self, new_logfile_name):
         self.__log_file_name = new_logfile_name
         self.__calculator_data = self.__init_study_data()
 
-    def add_new_log_data(self, time_stamp, event_type, is_mouse, klm_id, button):
+    def add_new_log_data(self, time_stamp, event_type, is_mouse, klm_id, argument):
         log_data = {'timeStamp': time_stamp, 'eventType': event_type, 'isMouse': is_mouse, 'klmId': klm_id,
-                    'button': button}
+                    'argument': argument}
         print(log_data)
         self.__calculator_data = self.__calculator_data.append(log_data, ignore_index=True)
         self.__calculator_data.to_csv(self.__log_file_name, index=False)
@@ -120,6 +120,8 @@ class IttCalculator(QtWidgets.QWidget):
             self.__equation_text = ""
             self.__equation_label.setText(self.__equation_text)
         elif command == "Clear":
+            self._calculatorLogger.add_new_log_data(time.time(), "task_restarted", None, None,
+                                                    self._current_condition_index)
             self.__equation_text = self.__equation_text[:-1]
             self.__equation_label.setText(self.__equation_text)
 
