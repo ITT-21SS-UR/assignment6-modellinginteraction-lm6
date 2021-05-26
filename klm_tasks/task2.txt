@@ -2,4 +2,4 @@
 
 18K  # 2 keystrokes for digit and the following "+" operator from 1 to 9 (9*2 in total)
 27k  # 3 keystrokes for number and "+" operator from 11 to 19 (9*3 in total)
-KK  # 2 keystrokes for entering "20" ("Shift" & "=" not necessary as the task is to only add them and not calculate the result)
+KKKK  # 2 keystrokes for entering "20" and 2 for "Shift" & "="

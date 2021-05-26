@@ -4,5 +4,4 @@ pbb  # move mouse cursor to the first number (1) and press the left mouse button
 pbb  # move cursor to the "+" key and press it
 16p32b  # same procedure for 2 to 9 (1P and 2B for each digit (8) and "+" operator (8))
 pbb pbb pbb  # starting from 10 the user has to press two digits before the "+"
-27p54b  # same for 11 to 19 (3P and 6B for each number and operator pair (9 overall))
-pbb pbb  # the last number is only 20 (two digits) without any operator as it says only "adding" and not "calculate"
+30p60b  # same for 11 to 20 (3P and 6B for each number and operator pair (10 overall)); last operator is "=" instead of "+"
